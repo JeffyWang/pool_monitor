@@ -1,0 +1,17 @@
+# PyCharm
+.idea
+# PyDev
+.project
+.pydevproject
+.settings/
+
+*.mo
+*.log
+*.pyc
+*.wpr
+*.wpu
+*.tar.gz
+*.orig
+*.bak
+*.pid
+*.out

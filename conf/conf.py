@@ -12,6 +12,10 @@ class Config():
         config = ConfigParser.ConfigParser()
         config.read(join(self.CONF_DIR, file_name))
 
+        define('api', join(self.CONF_DIR, 'api.json'))
+        define('pool', join(self.CONF_DIR, 'pool.json'))
+        define('data', join(self.CONF_DIR, 'data.json'))
+
         sections = config.sections()
         for section in sections:
             options = config.options(section)

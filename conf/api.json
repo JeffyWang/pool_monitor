@@ -1,0 +1,22 @@
+[
+    {
+        "name": "glance",
+        "cos_api": "/v1/{0}/is/images",
+        "vms_api": "/v1/images"
+    },
+    {
+        "name": "neutron",
+        "cos_api": "/v2/{0}/is/networks",
+        "vms_api": "/v1/networks"
+    },
+    {
+        "name": "cinder",
+        "cos_api": "/v1/{0}/is/volumes",
+        "vms_api": "/v1/volumes"
+    },
+    {
+        "name": "nova",
+        "cos_api": "/v1/{0}/is/flavors",
+        "vms_api": "/v1/flavors"
+    }
+]

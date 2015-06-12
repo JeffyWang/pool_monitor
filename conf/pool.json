@@ -1,0 +1,14 @@
+[
+    {
+        "name": "huhehaote",
+        "host": "127.0.0.1",
+        "vms_port": "18889",
+        "cos_port": "18585"
+    },
+    {
+        "name": "langfang",
+        "host": "127.0.0.1",
+        "vms_port": "28889",
+        "cos_port": "18585"
+    }
+]

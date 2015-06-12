@@ -8,6 +8,7 @@ import tornado.web
 import tornado.httpserver
 from conf.conf import Config
 from monitor.router import router
+from monitor.task.monitor import MonitorTask
 
 
 LOG = logging.getLogger(__name__)
@@ -33,7 +34,15 @@ def run_server():
     LOG.info('Staring server with port [{0}], conf [{1}]'.format(
         str(options.port), join(config.CONF_DIR, 'log.conf')
     ))
+
+    period = 2 * 1000
+    tornado.ioloop.PeriodicCallback(init_task, period).start()
     tornado.ioloop.IOLoop.instance().start()
+
+
+def init_task():
+    monitor = MonitorTask()
+    monitor.run()
 
 
 def init_config():

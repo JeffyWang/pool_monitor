@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 import ConfigParser
-import os
+from os.path import abspath, dirname, join
 from tornado.options import define
 
 
 class Config():
-    def __init__(self, file_path):
+    CONF_DIR = dirname(abspath(__file__))
+    PROJECT_DIR = dirname(CONF_DIR)
+
+    def __init__(self, file_name):
         config = ConfigParser.ConfigParser()
-        path = os.getcwd()
-        config.read(path + '/' + file_path)
+        config.read(join(self.CONF_DIR, file_name))
 
         sections = config.sections()
         for section in sections:

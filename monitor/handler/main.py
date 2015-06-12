@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+import logging
 import tornado.web
+import tornado.gen
+
+
+LOG = logging.getLogger(__name__)
 
 
 class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        data = dict(
-            a=1,
-            b='2'
-        )
-        self.write(data)
+
+    @tornado.gen.coroutine
+    def get(self, *args, **kwargs):
+        self.render('index.html')

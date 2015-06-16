@@ -1,10 +1,13 @@
-
-    $.ajax({
-        url: '/monitor',
-        type: "GET",
-        dataType: "json",
-        contentType: 'application/json;charset=utf-8',
-        success: function (data) {
-            console.log(data)
-        }
-    })
+var CommentBox = React.createClass({
+    render: function () {
+        return (
+            <div className="commentBox">
+                Hello, world! I am a CommentBox.
+            </div>
+        );
+    }
+});
+React.render(
+    <CommentBox />,
+    document.getElementById('content')
+);

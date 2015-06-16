@@ -23,6 +23,7 @@ class Application(tornado.web.Application):
         setting = {
             'template_path': join(config.PROJECT_DIR, 'templates'),
             'static_path': join(config.PROJECT_DIR, 'static'),
+            'debug': True
         }
         tornado.web.Application.__init__(self, handler, **setting)
 
@@ -38,7 +39,7 @@ def run_server():
     ))
 
     init_data()
-    period = 2 * 1000
+    period = 10 * 60 * 1000
     tornado.ioloop.PeriodicCallback(init_task, period).start()
     tornado.ioloop.IOLoop.instance().start()
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from monitor.server import main
+from pool_monitor.server import main
 
 
 if __name__ == "__main__":

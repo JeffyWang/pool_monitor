@@ -6,6 +6,7 @@ import time
 import requests
 
 from tornado.options import options
+from pool_monitor.context import context
 
 
 LOG = logging.getLogger(__name__)
@@ -52,23 +53,35 @@ class MonitorTask():
                     vms_request = requests.get(vms_url)
                     vms_end_time = time.time()
 
-                    LOG.info('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-                    LOG.info(cos_request.status_code)
-                    LOG.info(vms_request.status_code)
+                    # LOG.info('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+                    cos_status_code = cos_request.status_code
+                    vms_status_code = vms_request.status_code
                     cos_cost_time = cos_end_time - cos_start_time
                     vms_cost_time = vms_end_time - vms_start_time
-                    LOG.info(cos_cost_time)
-                    LOG.info(vms_cost_time)
-                    LOG.info('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+                    cos_time_length = len(context.DATA.get(pool.get('name')).get(api.get('name')).get('cos_time'))
+                    vms_time_length = len(context.DATA.get(pool.get('name')).get(api.get('name')).get('vms_time'))
+                    # LOG.info(cos_status_code)
+                    # LOG.info(vms_status_code)
+                    # LOG.info(cos_cost_time)
+                    # LOG.info(vms_cost_time)
+                    LOG.info(cos_time_length)
+                    LOG.info(vms_time_length)
+                    LOG.info(options.data_size)
+
+                    context.DATA.get(pool.get('name')).get(api.get('name')).get('cos_time').append(cos_cost_time)
+                    context.DATA.get(pool.get('name')).get(api.get('name')).get('vms_time').append(vms_cost_time)
+
+                    if cos_time_length >= int(options.data_size):
+                        del context.DATA.get(pool.get('name')).get(api.get('name')).get('cos_time')[0]
+                    if vms_time_length >= int(options.data_size):
+                        del context.DATA.get(pool.get('name')).get(api.get('name')).get('vms_time')[0]
+
+                    if cos_status_code == 200 or vms_status_code == 200:
+                        context.DATA.get(pool.get('name')).get(api.get('name'))['status'] = 'up'
+                    else:
+                        context.DATA.get(pool.get('name')).get(api.get('name'))['status'] = 'failed'
+                    LOG.info(context.DATA)
+                    # LOG.info('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
                 except Exception as ex:
                     LOG.error(ex)
-
-
-def init_data():
-    LOG.info('Load data json [{0}]'.format(options.data))
-    data_data = open(options.data)
-    data = json.load(data_data)
-    return data
-
-
-DATA = init_data()
+                    context.DATA.get(pool.get('name')).get(api.get('name'))['status'] = 'failed'

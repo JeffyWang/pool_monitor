@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import logging
 import logging.config
 from os.path import join
@@ -7,8 +8,9 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpserver
 from conf.conf import Config
-from monitor.router import router
-from monitor.task.monitor import MonitorTask
+from pool_monitor.router import router
+from pool_monitor.task.monitor import MonitorTask
+from pool_monitor.context import context
 
 
 LOG = logging.getLogger(__name__)
@@ -35,6 +37,7 @@ def run_server():
         str(options.port), join(config.CONF_DIR, 'log.conf')
     ))
 
+    init_data()
     period = 2 * 1000
     tornado.ioloop.PeriodicCallback(init_task, period).start()
     tornado.ioloop.IOLoop.instance().start()
@@ -49,6 +52,13 @@ def init_config():
     options.parse_command_line()
     config = Config('monitor.conf')
     return config
+
+
+def init_data():
+    LOG.info('Load data json [{0}]'.format(options.data))
+    data_data = open(options.data)
+    data = json.load(data_data)
+    context.DATA = data
 
 
 def main():

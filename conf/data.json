@@ -2,45 +2,45 @@
   "huhehaote": {
     "nova": {
       "status": "up",
-      "cos_time": [100, 300, 400, 200, 600],
-      "vms_time": [100, 300, 400, 200, 600]
+      "cos_time": [],
+      "vms_time": []
     },
     "cinder": {
       "status": "up",
-      "cos_time": [100, 300, 400, 200, 600],
-      "vms_time": [100, 300, 400, 200, 600]
+      "cos_time": [],
+      "vms_time": []
     },
     "neutron": {
       "status": "up",
-      "cos_time": [100, 300, 400, 200, 600],
-      "vms_time": [100, 300, 400, 200, 600]
+      "cos_time": [],
+      "vms_time": []
     },
     "glance": {
       "status": "up",
-      "cos_time": [100, 300, 400, 200, 600],
-      "vms_time": [100, 300, 400, 200, 600]
+      "cos_time": [],
+      "vms_time": []
     }
   },
   "langfang": {
     "nova": {
       "status": "up",
-      "cos_time": [100, 300, 400, 200, 600],
-      "vms_time": [100, 300, 400, 200, 600]
+      "cos_time": [],
+      "vms_time": []
     },
     "cinder": {
       "status": "up",
-      "cos_time": [100, 300, 400, 200, 600],
-      "vms_time": [100, 300, 400, 200, 600]
+      "cos_time": [],
+      "vms_time": []
     },
     "neutron": {
       "status": "up",
-      "cos_time": [100, 300, 400, 200, 600],
-      "vms_time": [100, 300, 400, 200, 600]
+      "cos_time": [],
+      "vms_time": []
     },
     "glance": {
       "status": "up",
-      "cos_time": [100, 300, 400, 200, 600],
-      "vms_time": [100, 300, 400, 200, 600]
+      "cos_time": [],
+      "vms_time": []
     }
   }
 }

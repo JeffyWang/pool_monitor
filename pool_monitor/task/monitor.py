@@ -64,9 +64,9 @@ class MonitorTask():
                     # LOG.info(vms_status_code)
                     # LOG.info(cos_cost_time)
                     # LOG.info(vms_cost_time)
-                    LOG.info(cos_time_length)
-                    LOG.info(vms_time_length)
-                    LOG.info(options.data_size)
+                    # LOG.info(cos_time_length)
+                    # LOG.info(vms_time_length)
+                    # LOG.info(options.data_size)
 
                     context.DATA.get(pool.get('name')).get(api.get('name')).get('cos_time').append(cos_cost_time)
                     context.DATA.get(pool.get('name')).get(api.get('name')).get('vms_time').append(vms_cost_time)
